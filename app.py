@@ -1,4 +1,4 @@
-
+import os
 import gradio as gr
 import joblib
 
@@ -41,5 +41,8 @@ with gr.Blocks(theme=gr.themes.Soft()) as demo:
 
     classify_btn.click(fn=classify_sms, inputs=message_input, outputs=[inbox_box, spam_box])
 
+
 if __name__ == "__main__":
-    demo.launch(share=True)
+    port = int(os.environ.get("PORT", 10000))  # Render sets this automatically
+    app.launch(server_name="0.0.0.0", server_port=port)
+
